@@ -4,10 +4,14 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { TreeNode } from 'primeng/api';
+import { Candidate } from '../models/candidate';
 
 @Injectable()
 export class CoreService {
   private baseUrl = 'http://private-76432-jobadder1.apiary-mock.com/';
+
+  candidates: Candidate[];
+  
   constructor(private http: HttpClient) { }
 
   getJobs(): Observable<TreeNode[]> {
@@ -21,4 +25,20 @@ export class CoreService {
             })
         );
   }
+
+  getCandidates(): void {
+        this.http.get<any[]>(`${this.baseUrl}/candidates`).pipe(
+            map((candidates: any[]) => {
+                return candidates.map(
+                    candidate => ({
+                        name: candidate.name,
+                        skills: candidate.skillTags,
+                        skillarray: candidate.skillTags.replace(/\s/g, '').split(',')
+                    } as Candidate)
+                );
+            })
+        ).subscribe(candidates => {
+            this.candidates = candidates;
+        });
+    }
 }
