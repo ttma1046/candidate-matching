@@ -51,7 +51,7 @@ export class CoreService {
                 requireskillweight[skillarray[i]] = skillarray.length - i;
             }
 
-            this.candidates.reduce((acc, candidate) => {
+            const bestmatch: Candidate = this.candidates.reduce((acc, candidate) => {
                 if (!candidate.skillarray || candidate.skillarray.length === 0) {
                     return acc;
                 }
@@ -59,15 +59,28 @@ export class CoreService {
                 const matchedskills = candidate.skillarray.filter(function(skill, index) {
                     return !!requireskillweight[skill] && candidate.skillarray.indexOf(skill) === index;
                 });
+
+                if (matchedskills.length > 0) {
+                    const weight = matchedskills.reduce((accu, skill, index) => {
+                        return requireskillweight[skill] * (matchedskills.length - index) + accu;
+                    }, 0);
+
+                    const score = weight / matchedskills.length;
+
+                    return score > acc.score ? { ...candidate, score } : acc;
+                }
+
+                return acc;
             }, { score: 0, name: '', skills: '', skillarray: [] });
 
             observer.next({
                 data: {
-                    name: 'test',
-                    company: 'test',
-                    skills: 'test'
+                    name: bestmatch['name'],
+                    company: `Score:${bestmatch['score']} - Top Score`,
+                    skills: bestmatch['skills']
                 }
             } as TreeNode);
-        });
+        }
+        );
     }
 }
