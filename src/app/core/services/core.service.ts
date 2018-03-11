@@ -44,6 +44,13 @@ export class CoreService {
 
     getMatchedCandidates(skillarray: string[]): Observable<TreeNode> {
         return Observable.create(observer => {
+
+            const requireskillweight = {};
+
+            for (let i = 0; i < skillarray.length; i++) {
+                requireskillweight[skillarray[i]] = skillarray.length - i;
+            }
+            
             observer.next({
                 data: {
                     name: 'test',
