@@ -8,13 +8,13 @@ import { Candidate } from '../models/candidate';
 
 @Injectable()
 export class CoreService {
-  private baseUrl = 'http://private-76432-jobadder1.apiary-mock.com/';
+    private baseUrl = 'http://private-76432-jobadder1.apiary-mock.com/';
 
-  candidates: Candidate[];
-  
-  constructor(private http: HttpClient) { }
+    candidates: Candidate[];
 
-  getJobs(): Observable<TreeNode[]> {
+    constructor(private http: HttpClient) { }
+
+    getJobs(): Observable<TreeNode[]> {
         return this.http.get<TreeNode[]>(`${this.baseUrl}/jobs`).pipe(
             map((jobs: TreeNode[]) => {
                 return jobs.map(job => ({
@@ -24,9 +24,9 @@ export class CoreService {
                 );
             })
         );
-  }
+    }
 
-  getCandidates(): void {
+    getCandidates(): void {
         this.http.get<any[]>(`${this.baseUrl}/candidates`).pipe(
             map((candidates: any[]) => {
                 return candidates.map(
@@ -39,6 +39,18 @@ export class CoreService {
             })
         ).subscribe(candidates => {
             this.candidates = candidates;
+        });
+    }
+
+    getMatchedCandidates(skillarray: string[]): Observable<TreeNode> {
+        return Observable.create(observer => {
+            observer.next({
+                data: {
+                    name: 'test',
+                    company: 'test',
+                    skills: 'test'
+                }
+            } as TreeNode);
         });
     }
 }
