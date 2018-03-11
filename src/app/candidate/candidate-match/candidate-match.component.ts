@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { TreeNode } from 'primeng/api';
+
+import { CoreService } from '../../core/services/core.service';
+
 
 @Component({
   selector: 'app-candidate-match',
@@ -6,10 +10,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./candidate-match.component.css']
 })
 export class CandidateMatchComponent implements OnInit {
-
-  constructor() { }
+  jobs: TreeNode[];
+  constructor(private service: CoreService) { }
 
   ngOnInit() {
+      this.loadJobs();
   }
 
+  loadJobs() {
+
+  }
 }
