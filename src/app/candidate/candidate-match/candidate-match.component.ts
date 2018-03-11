@@ -26,4 +26,7 @@ export class CandidateMatchComponent implements OnInit {
   loadCandidates() {
     this.service.getCandidates();
   }
+
+  loadNode(event) {
+  }
 }

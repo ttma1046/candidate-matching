@@ -1,4 +1,4 @@
-<p-treeTable [value]="jobs">
+<p-treeTable [value]="jobs" (onNodeExpand)="loadNode($event)">
     <p-header>Candidate Matching</p-header>
     <p-column field="name" header="Name"></p-column>
     <p-column field="company" header="Company Name"></p-column>
