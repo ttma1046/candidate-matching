@@ -3,7 +3,6 @@ import { TreeNode } from 'primeng/api';
 
 import { CoreService } from '../../core/services/core.service';
 
-
 @Component({
   selector: 'app-candidate-match',
   templateUrl: './candidate-match.component.html',
@@ -18,6 +17,8 @@ export class CandidateMatchComponent implements OnInit {
   }
 
   loadJobs() {
-
+    this.service.getJobs().subscribe(jobs => {
+      this.jobs = jobs;
+    });
   }
 }
