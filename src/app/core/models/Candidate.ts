@@ -3,4 +3,5 @@ export interface Candidate {
     skills: string;
     skillarray: string[];
     score: number;
+    skillTags: string;
 }

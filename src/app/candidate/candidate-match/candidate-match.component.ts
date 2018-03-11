@@ -14,17 +14,12 @@ export class CandidateMatchComponent implements OnInit {
 
   ngOnInit() {
       this.loadJobs();
-      this.loadCandidates();
   }
 
   loadJobs() {
     this.service.getJobs().subscribe(jobs => {
       this.jobs = jobs;
     });
-  }
-
-  loadCandidates() {
-    this.service.getCandidates();
   }
 
   loadNode(event) {
