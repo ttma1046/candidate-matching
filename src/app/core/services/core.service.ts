@@ -15,7 +15,16 @@ export class CoreService {
                     name: 'Test',
                     company: 'Test',
                     skills: 'Test'
+                },
+                children:[
+                {  
+                    data: {
+                        name: 'Test Sub',
+                        company: 'Test Sub',
+                        skills: 'Test Sub'
+                    }
                 }
+                ]
             } as TreeNode]);
   }
 }
