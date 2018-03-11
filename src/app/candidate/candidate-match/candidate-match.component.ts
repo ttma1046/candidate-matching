@@ -30,6 +30,6 @@ export class CandidateMatchComponent implements OnInit {
   loadNode(event) {
     const requireskills: string[] = event.node.data.skills.replace(/\s/g, '').replace(/-/g, '').toLowerCase().split(',');
 
-    this.service.getMatchedCandidates(requireskills).subscribe(node => event.node.children = [node]);
+    this.service.getMatchedCandidates(requireskills).subscribe(bestmatch => event.node.children = [bestmatch]);
   }
 }
