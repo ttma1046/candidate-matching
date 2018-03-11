@@ -9,19 +9,20 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Method to get most-qualified candidate
 1. I weight the skills job required based on the order that from left the most-relevant to right the least-relevant.
- e.g. mobile weight: 10, java weight: 9, swift weight: 8, objective-c weight: 7, iOS weight: 6, xcode weight: 5, fastlane weight: 4, aws weight: 3, kotlin weight: 2, hockey-app weight: 1
+  e.g. 
+  `mobile weight: 10, java weight: 9, swift weight: 8, objective-c weight: 7, iOS weight: 6, xcode weight: 5, fastlane weight: 4, aws weight: 3, kotlin weight: 2, hockey-app weight: 1`
 
 2. I find the candidate who has the skills matching with the required skills of the job, weight that from left the strongest to right the weakest.
  e.g. 
-    skillTags: placements, iOS weight: 3, entertainment, mobile weight: 2, xcode weight: 1
+    `skillTags: placements, iOS weight: 3, entertainment, mobile weight: 2, xcode weight: 1`
 
 3. Multiply those two weights and add up all of the matching skills
   
-  iOS 6 * 3 + mobile 10 * 2 + xcode 1 * 5 = 44
+     `iOS 6 * 3 + mobile 10 * 2 + xcode 1 * 5 = 44`
 
 4. Divide the total weight by the amount of matching skills to get score.
 
-  44 / 3 = 14.66666
+     `Score: 44 / 3 = 14.66666`
 
 5. Find candidate with the highest score.
 
